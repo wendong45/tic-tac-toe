@@ -1,4 +1,4 @@
-### TicTacToe with AngularJS and Spring REST ###
+### Tic Tac Toe with AngularJS and Spring REST ###
  
 ===========================================================================
 
