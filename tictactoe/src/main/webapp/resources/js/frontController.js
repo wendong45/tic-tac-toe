@@ -1,12 +1,14 @@
 /**
- * JavaScript that controls the game board, game logic, and ajax calls of Spring REST web services
+ * JavaScript front-end controller for game board display, game logic, and invocation to web services
  * @author Wendong Wang
  * @version 1 (June 2017)
  */
 
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
-    $scope.serverInit = function() {
+    
+	//function to call web service for game initialization
+	$scope.serverInit = function() {
     	var whoPlaysFirstGrp = document.getElementsByName("who_plays_first");
         var whoPlaysFirst = "";
     	for (var i = 0, l = whoPlaysFirstGrp.length; i < l; i++) {
@@ -24,8 +26,16 @@ app.controller('myCtrl', function($scope, $http) {
             });
     };
 
-    $scope.serverInit();
+    $scope.serverInit(); //initialize game
 
+    /**
+     *  The below function is event handler when square is clicked by client: 
+     *    1)check if the move is legal. 
+     *    2)If legal, 
+     *      i) mark the move.
+     *      ii) check to see if a win/draw can be declared.
+     *          If not declared, invoke server move web service, then check if a win/draw can be declared
+     */
     $scope.selected = function(squareHtml) {
         var squareJS = $scope.getQquareById(squareHtml.item.id);
         if (!squareJS)
@@ -40,12 +50,13 @@ app.controller('myCtrl', function($scope, $http) {
         if ($scope.checkAndDeclareWinner())
             return;
 
-        $scope.message = "";
-        setTimeout($scope.serverPlay, 300);
+        $scope.message = ""; //to be refilled by callback method in serverPlay
+        setTimeout($scope.serverPlay, 300); //delayed for better visual effect
 
-        setTimeout($scope.checkAndDeclareWinner, 500);
+        setTimeout($scope.checkAndDeclareWinner, 500); //delayed as above
     };
 
+    //The below function is to spot the square clicked on
     $scope.getQquareById = function(squareId) {
         for (var i = 0; i < $scope.board.length; i++) {
             for (var j = 0; j < $scope.board[i].length; j++) {
@@ -56,6 +67,7 @@ app.controller('myCtrl', function($scope, $http) {
         return null;
     };
 
+    //The below function checks if a win/draw can be declared
     $scope.checkAndDeclareWinner = function() {
         var winner = $scope.findWinner();
         if (winner) {
@@ -78,6 +90,10 @@ app.controller('myCtrl', function($scope, $http) {
         return false;
     };
 
+    /**
+     * The below function invokes server-side move. 
+     * As Angular hard-codes asynchronous mode, its ajax not good here (see commented), synchronous ajax is self coded.
+     */  
     $scope.serverPlay = function() {
         var parameter = angular.toJson($scope.board);
 //        var config = {
@@ -95,7 +111,7 @@ app.controller('myCtrl', function($scope, $http) {
 //            }
 //        );
 
-        var xhttp = new XMLHttpRequest();
+        var xhttp = new XMLHttpRequest(); //not compatible with very old IE
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
         	  var responseData = JSON.parse(this.responseText);
@@ -104,14 +120,14 @@ app.controller('myCtrl', function($scope, $http) {
         	  $scope.$apply();
           }
         };
-        xhttp.open("POST", SERVER_PLAY, false);
+        xhttp.open("POST", SERVER_PLAY, false); //make asynchronous false
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.setRequestHeader("Accept", "application/json");
         xhttp.send(parameter);
-  
     };
 
 
+    // Function to find out winner
     $scope.findWinner = function() {//debugger;
         //check row
         for (var i = 0; i < $scope.board.length; i++)
@@ -132,6 +148,7 @@ app.controller('myCtrl', function($scope, $http) {
         return null;
     };
 
+    // Function to tell if the straight three squares are taken by same player
     $scope.straightThree = function(coord1, coord2, coord3) {
     	return $scope.board[coord1[0]][coord1[1]].value != ""  
     		&& $scope.board[coord1[0]][coord1[1]].value == $scope.board[coord2[0]][coord2[1]].value
