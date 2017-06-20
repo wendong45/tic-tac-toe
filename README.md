@@ -9,6 +9,7 @@ This sample uses AngularJS and Spring REST to implement a tic-tac-toe game
 BUILD REQUIREMENTS:
 
 JAVA 7 or later 
+
 Maven 1.3 or later
  
 ===========================================================================
@@ -16,24 +17,37 @@ Maven 1.3 or later
 RUNTIME REQUIREMENTS:
  
 Tomcat 7 or later
+
 Chrome version 49 or later (!!Have tested only on Chrome!!)
  
 ===========================================================================
 
 PACKAGING LIST:
+
 pom.xml - Moven build file
+
 index.jsp - Tic-Tac-Toe home page
+
 frontcontroller.js - JavaScript front-end controller for game board display, game logic, and invocation to web services
+
 main.css - Basic styles for the page.
+
 servelet-context.xml - Spring configuration
+
 TictactoeController.java - Server side controller
+
 TictactoeServiceImp.java - Server side service program
+
 Board.java - Game board model (n x n squares)
+
 Square.java - Model of Square (an unit of game board)
+
 ResponseData.java - JSON data object model for data exchange between server and client
+
 Constants.java - Central constants reservoir
 
 JavaDoc generated documents in Doc directory.
+
 ===========================================================================
 WORK TO DO:
  
