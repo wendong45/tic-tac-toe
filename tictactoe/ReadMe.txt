@@ -32,7 +32,7 @@ Constants.java - Central constants reservoir
 
 JavaDoc generated documents in Doc directory.
 ===========================================================================
-CHANGES TO BE MADE LATER:
+WORK TO DO:
  
 1. Fix angular rendering issue - no immediate update on screen when a binding value is changed, i.e., the last clicking is not marked before win is declared.
 2. Add server playing strategies (AI) to simulate levels as beginner, experienced, and expert players.
