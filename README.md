@@ -5,6 +5,7 @@
 DESCRIPTION:
  
 This sample uses AngularJS and Spring REST to implement a tic-tac-toe game
+
 ===========================================================================
 
 BUILD REQUIREMENTS:
