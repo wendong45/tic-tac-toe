@@ -5,6 +5,7 @@ DESCRIPTION:
  
 This sample uses AngularJS and Spring REST to implement a tic-tac-toe game
 ===========================================================================
+
 BUILD REQUIREMENTS:
 
 JAVA 7 or later 
@@ -18,6 +19,7 @@ Tomcat 7 or later
 Chrome version 49 or later (!!Have tested only on Chrome!!)
  
 ===========================================================================
+
 PACKAGING LIST:
 pom.xml - Moven build file
 index.jsp - Tic-Tac-Toe home page
@@ -43,4 +45,5 @@ WORK TO DO:
 6. Add new features, e.g., use local storage to save state for revisits, record playing history, add complexity options. 
  
 ===========================================================================
+
 Copyright (C) 2017 Wendong Wang.
