@@ -1,1 +1,4 @@
 com.wwd.tictactoe
+com.wwd.tictactoe.controller
+com.wwd.tictactoe.model
+com.wwd.tictactoe.service
