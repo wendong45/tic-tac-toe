@@ -1,6 +1,7 @@
 ### TicTacToe with AngularJS and Spring REST ###
  
 ===========================================================================
+
 DESCRIPTION:
  
 This sample uses AngularJS and Spring REST to implement a tic-tac-toe game
@@ -49,6 +50,7 @@ Constants.java - Central constants reservoir
 JavaDoc generated documents in Doc directory.
 
 ===========================================================================
+
 WORK TO DO:
  
 1. Fix angular rendering issue - no immediate update on screen when a binding value is changed, i.e., the last clicking is not marked before win is declared.
